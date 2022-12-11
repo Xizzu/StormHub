@@ -1,0 +1,98 @@
+if game.PlaceId == 11040063484 then
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "🌩StormHub | Sword Fighters Simulator", HidePremium = false, SaveConfig = true, ConfigFolder = "StormHub", IntroText = "🌩StormHub"})
+
+-- values
+
+_G.AutoSwing = true
+_G.AutoSword = true
+_G.AutoPets = true
+_G.AutoAscend = true
+
+
+-- functions
+
+function AutoSwing()
+    while _G.AutoSwing == true do
+        game:GetService("ReplicatedStorage").Packages.Knit.Services.ClickService.RF.Click:InvokeServer()
+        wait(.0000000000000000000000000000000000000000000001)
+     end
+    end
+
+    function AutoSword()
+        while _G.AutoSword == true do
+            game:GetService("ReplicatedStorage").Packages.Knit.Services.WeaponInvService.RF.EquipBest:InvokeServer()
+            wait(.0000000000000000000000000000000000000000000001)
+         end
+        end
+
+        function AutoPets()
+            while _G.AutoPets == true do
+                game:GetService("ReplicatedStorage").Packages.Knit.Services.PetInvService.RF.EquipBest:InvokeServer()
+                wait(.0000000000000000000000000000000000000000000001)
+             end
+            end
+
+            function AutoAscend()
+                while _G.AutoAscend == true do
+                    game:GetService("ReplicatedStorage").Packages.Knit.Services.AscendService.RF.Ascend:InvokeServer()
+                    wait(.0000000000000000000000000000000000000000000001)
+                 end
+                end
+
+
+-- tabs
+
+local FarmTab = Window:MakeTab({
+	Name = "AutoFarm",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local InventoryTab = Window:MakeTab({
+	Name = "Inventory",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+-- toggles
+
+FarmTab:AddToggle({
+	Name = "Auto Swing",
+	Default = false,
+	Callback = function(Value)
+        _G.AutoSwing = Value
+        AutoSwing()
+	end
+})
+
+FarmTab:AddToggle({
+	Name = "Auto Ascend",
+	Default = false,
+	Callback = function(Value)
+        _G.AutoAscend = Value
+        AutoAscend()
+	end
+})
+
+InventoryTab:AddToggle({
+	Name = "Auto equip best sword",
+	Default = false,
+	Callback = function(Value)
+        _G.AutoSword = Value
+        AutoSword()
+	end
+})
+
+InventoryTab:AddToggle({
+	Name = "Auto equip best pets",
+	Default = false,
+	Callback = function(Value)
+        _G.AutoPets = Value
+        AutoPets()
+	end
+})
+
+
+end
+OrionLib:Init()
